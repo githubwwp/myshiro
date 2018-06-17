@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wwp.web.dao.impl.SysUserDao">
+
+	<select id="queryAll" resultType="com.wwp.web.entity.SysUser">
+		SELECT
+			user_id AS userId,
+			username AS username,
+			`password` AS `password`,
+			gender AS gender,
+			birthday AS birthday,
+			actual_name AS actual_name,
+			`status` AS `status`
+		FROM
+			sys_user
+	</select>
+	
+	
+
+</mapper>
