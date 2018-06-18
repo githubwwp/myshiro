@@ -3,7 +3,7 @@
   type="WEB"
   name="myshiro"
   id="myeclipse.1528806517688"
-  context-root="/myshiro"
+  context-root="/ROOT"
   j2ee-spec="6.0"
   archive="myshiro.war">
   <attributes>
