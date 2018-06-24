@@ -1,8 +1,14 @@
 package com.wwp.web.controller.login;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wwp.web.controller.BaseController;
@@ -16,15 +22,19 @@ public class LoginController extends BaseController {
     @Autowired
     private SysUserService sysUserService;
 
-    @RequestMapping("login.do")
-    public ModelAndView login(String username, String password) {
-        if(username == null || password == null){
-            return new ModelAndView("redirect:/login.jsp");
-        }
-        
-        
-
-        return new ModelAndView("redirect:/index.jsp");
+    @RequestMapping(value="login.do", method=RequestMethod.POST)
+    public String login(String username, String password) {
+        Subject subject = SecurityUtils.getSubject();  
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);  
+        try {  
+            subject.login(token);
+            Session session=subject.getSession();
+            session.setAttribute("subject", subject);
+            return "/page/indexJsp.do";
+        } catch (AuthenticationException e) {  
+            
+            return "/page/loginJsp.do"; 
+        }  
     }
 
 }

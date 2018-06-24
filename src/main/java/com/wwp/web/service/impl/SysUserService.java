@@ -1,6 +1,7 @@
 package com.wwp.web.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,36 @@ public class SysUserService {
      */
     public int delUser(SysUser sysUser) {
         return sysUserMapper.delUser(sysUser);
+    }
+
+    /**
+     * 根据用户名获取用户信息
+     * 
+     * @param username
+     * @return
+     */
+    public String queryByUsername(String username) {
+        return sysUserMapper.queryByUsername(username);
+    }
+
+    /**
+     * 获取用户角色
+     * 
+     * @param username
+     * @return
+     */
+    public Set<String> getUserRoles(String username) {
+        return sysUserMapper.getUserRoles(username);
+    }
+
+    /**
+     * 获取用户权限
+     * 
+     * @param username
+     * @return
+     */
+    public Set<String> getUserPermissons(String username) {
+        return sysUserMapper.getUserPermissons(username);
     }
 
 }

@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.spring.web.servlet.view.JsonView;
-
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
@@ -28,6 +26,7 @@ public class PageController extends BaseController {
     @Autowired
     private SysRoleService roleService;
 
+    @RequiresRoles("administrator")
     @RequestMapping("userManageJsp")
     public ModelAndView userManageJsp(String username, Integer pageNum, Integer pageSize) {
         Map<String, Object> model = new HashMap<String, Object>();
@@ -58,6 +57,11 @@ public class PageController extends BaseController {
     @RequestMapping("loginJsp")
     public String loginJsp(){
         return "redirect:/login.jsp";
+    }
+    
+    @RequestMapping("indexJsp")
+    public String indexJsp(){
+        return "redirect:/index.jsp";
     }
 
 }

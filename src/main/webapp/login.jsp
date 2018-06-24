@@ -19,6 +19,37 @@
 		<input type="reset" >
 	</form>
 </div>
+<br />
+<hr />
+<div>
+	<table>
+		<tr>
+			<th>用户名</th>
+			<th>密码</th>
+		</tr>
+		<tr>
+			<td>admin</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>local</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>abc</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>zhang3</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>li4</td>
+			<td>123</td>
+		</tr>
+	</table>
+	
+</div>
 
 </body>
 
