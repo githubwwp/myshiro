@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.wwp.web.service.impl.SysUserService;
 
 public class MyRealm extends AuthorizingRealm {
-    
+
     @Autowired
     private SysUserService sysUserService;
 
@@ -25,8 +25,8 @@ public class MyRealm extends AuthorizingRealm {
         // 能进入到这里，表示账号已经通过验证了
         String userName = (String) principalCollection.getPrimaryPrincipal();
         // 通过service获取角色和权限
-         Set<String> permissions = sysUserService.getUserPermissons(userName);
-         Set<String> roles = sysUserService.getUserRoles(userName);
+        Set<String> permissions = sysUserService.getUserPermissons(userName);
+        Set<String> roles = sysUserService.getUserRoles(userName);
 
         // 授权对象
         SimpleAuthorizationInfo s = new SimpleAuthorizationInfo();
@@ -42,14 +42,14 @@ public class MyRealm extends AuthorizingRealm {
         UsernamePasswordToken t = (UsernamePasswordToken) token;
         String userName = token.getPrincipal().toString();
         String password = new String(t.getPassword());
-        
+
         // 获取数据库中的密码
-         String passwordInDB = sysUserService.queryByUsername(userName);
+        String passwordInDB = sysUserService.queryByUsername(userName);
 
         // 如果为空就是账号不存在，如果不相同就是密码错误，但是都抛出AuthenticationException，而不是抛出具体错误原因，免得给破解者提供帮助信息
-         if (null == passwordInDB || !passwordInDB.equals(password)){
-             throw new AuthenticationException();
-         }
+        if (null == passwordInDB || !passwordInDB.equals(password)) {
+            throw new AuthenticationException();
+        }
 
         // 认证信息里存放账号密码, getName() 是当前Realm的继承方法,通常返回当前类名 :databaseRealm
         SimpleAuthenticationInfo a = new SimpleAuthenticationInfo(userName, password, getName());
