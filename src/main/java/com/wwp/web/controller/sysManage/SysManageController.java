@@ -31,7 +31,7 @@ public class SysManageController extends BaseController {
         byte status = 1;
         sysUser.setStatus(status);
         sysUserService.insertUser(sysUser);
-        return new ModelAndView("redirect:/page/userManageJsp.do");
+        return new ModelAndView("redirect:/page/userManageJsp");
     }
 
     @RequestMapping("queryPageUser")
@@ -49,7 +49,7 @@ public class SysManageController extends BaseController {
     @RequestMapping("delUer")
     public ModelAndView delUer(SysUser sysUser) {
         sysUserService.delUser(sysUser);
-        return new ModelAndView("redirect:/page/userManageJsp.do");
+        return new ModelAndView("redirect:/page/userManageJsp");
     }
 
 }

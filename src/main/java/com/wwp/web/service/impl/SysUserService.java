@@ -6,7 +6,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wwp.web.dao.impl.SysPermissionMapper;
 import com.wwp.web.dao.impl.SysUserMapper;
+import com.wwp.web.entity.SysPermission;
 import com.wwp.web.entity.SysUser;
 
 @Service
@@ -14,6 +16,9 @@ public class SysUserService {
 
     @Autowired
     private SysUserMapper sysUserMapper;
+    
+    @Autowired
+    private SysPermissionMapper sysPermissionMapper;
 
     public List<SysUser> queryPageUser() {
         return sysUserMapper.queryPageUser();
@@ -67,6 +72,14 @@ public class SysUserService {
      */
     public Set<String> getUserPermissons(String username) {
         return sysUserMapper.getUserPermissons(username);
+    }
+    
+    /**
+     * 获取全部菜单权限
+     * @return
+     */
+    public Set<String> getAllPermissons(){
+        return sysPermissionMapper.getAllPermissons();
     }
 
 }

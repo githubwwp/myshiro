@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.wwp.web.controller.BaseController;
-import com.wwp.web.entity.SysUser;
 import com.wwp.web.service.impl.SysUserService;
 
 @Controller
@@ -22,18 +20,19 @@ public class LoginController extends BaseController {
     @Autowired
     private SysUserService sysUserService;
 
-    @RequestMapping(value="login.do", method=RequestMethod.POST)
+    @RequestMapping(value="login", method=RequestMethod.POST)
     public String login(String username, String password) {
+        
         Subject subject = SecurityUtils.getSubject();  
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);  
         try {  
             subject.login(token);
             Session session=subject.getSession();
             session.setAttribute("subject", subject);
-            return "/page/indexJsp.do";
+            return "/page/indexJsp";
         } catch (AuthenticationException e) {  
             
-            return "/page/loginJsp.do"; 
+            return "/page/loginJsp"; 
         }  
     }
 

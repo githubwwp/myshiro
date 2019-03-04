@@ -20,4 +20,6 @@ public interface SysUserMapper {
     
     Set<String> getUserPermissons(String username);
     
+    Set<String> getAllPermissons();
+    
 }

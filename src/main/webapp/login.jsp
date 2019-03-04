@@ -9,7 +9,7 @@
 
 <div style="margin: 10px 100px 0 100px; ">
 	<h1 align="center">登录</h1>
-	<form action="${pageContext.request.contextPath}/login/login.do" method="post">
+	<form action="${pageContext.request.contextPath}/login/login" method="post">
 		用户名: <input type="text" name="username"  >
 		<br />
 		密码: <input type="password" name="password" >

@@ -29,6 +29,17 @@
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
 
+	<!--增加对静态资源的处理,当前的设置必须在Spring的Dispatcher的前面 -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>/start/*</url-pattern>
+		<url-pattern>/src/*</url-pattern>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
+
+
 	<!-- springmvc -->
 	<servlet>
 		<servlet-name>mvcDispatcher</servlet-name>
@@ -42,7 +53,7 @@
 
 	<servlet-mapping>
 		<servlet-name>mvcDispatcher</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 	<!-- 字符集过滤 -->
@@ -64,7 +75,7 @@
 	</filter-mapping>
 
 	<!-- Shiro配置 -->
-	<filter>
+	<!-- <filter>
 		<filter-name>shiroFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
@@ -75,6 +86,6 @@
 	<filter-mapping>
 		<filter-name>shiroFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 </web-app>

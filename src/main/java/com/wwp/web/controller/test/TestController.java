@@ -1,4 +1,4 @@
-package com.wwp.web.controller.login;
+package com.wwp.web.controller.test;
 
 import java.util.HashMap;
 
@@ -8,17 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wwp.web.controller.BaseController;
-
 @Controller
 @RequestMapping("test")
-public class TestController extends BaseController {
+public class TestController {
 
-    
     @RequestMapping("test")
     public ModelAndView test(){
+        System.out.println("test");
         
-        return new ModelAndView(new JsonView(), new HashMap<String, Object>());
+        return new ModelAndView(new JsonView(), new HashMap());
     }
-    
 }

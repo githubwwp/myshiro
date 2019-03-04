@@ -24,8 +24,13 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         // 能进入到这里，表示账号已经通过验证了
         String userName = (String) principalCollection.getPrimaryPrincipal();
-        // 通过service获取角色和权限
-        Set<String> permissions = sysUserService.getUserPermissons(userName);
+        // 通过service获取角色和权限(超级管理员拥有所有权限)
+        Set<String> permissions;
+        if ("admin".equals(userName)) {
+            permissions = sysUserService.getAllPermissons();
+        } else {
+            permissions = sysUserService.getUserPermissons(userName);
+        }
         Set<String> roles = sysUserService.getUserRoles(userName);
 
         // 授权对象
