@@ -36,6 +36,7 @@
 		<url-pattern>/start/*</url-pattern>
 		<url-pattern>/src/*</url-pattern>
 		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.html</url-pattern>
 		<url-pattern>/images/*</url-pattern>
 	</servlet-mapping>
 
