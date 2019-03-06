@@ -22,6 +22,7 @@
         }]
     },
     {
+    	"name": "default",
         "title": "自定义",
         "icon": "layui-icon-fire",
         "list": [
