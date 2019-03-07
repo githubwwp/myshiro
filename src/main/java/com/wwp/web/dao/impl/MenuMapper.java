@@ -2,6 +2,8 @@ package com.wwp.web.dao.impl;
 
 import java.util.List;
 
+import com.wwp.entity.vo.MenuTreeVo;
+import com.wwp.entity.vo.MenuVo;
 import com.wwp.web.entity.Menu;
 
 public interface MenuMapper {
@@ -16,9 +18,13 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
-    
+
     int deleteAllMenu();
-    
+
     void batchInsertMenus(List<Menu> menus);
+
+    List<MenuVo> getAllMenus();
     
+    List<MenuTreeVo> getMenuTree();
+
 }

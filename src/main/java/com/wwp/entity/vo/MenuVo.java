@@ -1,5 +1,7 @@
 package com.wwp.entity.vo;
 
+import java.util.List;
+
 public class MenuVo {
 
 	private String id;
@@ -8,7 +10,7 @@ public class MenuVo {
 	private String title;
 	private String jump;
 	private String icon;
-	private MenuVo list;
+	private List<MenuVo> list;
 
 	public String getId() {
 		return id;
@@ -58,12 +60,12 @@ public class MenuVo {
 		this.icon = icon;
 	}
 
-	public MenuVo getList() {
-		return list;
-	}
+    public List<MenuVo> getList() {
+        return list;
+    }
 
-	public void setList(MenuVo list) {
-		this.list = list;
-	}
+    public void setList(List<MenuVo> list) {
+        this.list = list;
+    }
 
 }

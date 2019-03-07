@@ -1,0 +1,49 @@
+
+<title>菜单管理</title>
+
+<div class="layui-card layadmin-header">
+	<div class="layui-breadcrumb" lay-filter="breadcrumb">
+		<a lay-href="">主页</a> <a><cite>自定义</cite> </a> <a><cite>菜单管理</cite>
+		</a>
+	</div>
+</div>
+
+<style>
+/* 这段样式只是用于演示 */
+</style>
+
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-md4">
+			<div id="menuTree"></div>
+
+		</div>
+
+		<div class="layui-col-md8">we</div>
+	</div>
+</div>
+
+<script>
+    layui.use([ 'jquery', 'tree' ], function() {
+        var $ = layui.$, tree = layui.tree;
+
+        // 获取树数据
+        $.ajax({
+            url : '../../menu/getMenuTree',
+            method : 'post',
+            type: 'json',
+            success : function(data) {
+                layui.tree({
+                    elem : '#menuTree' //传入元素选择器
+                    ,
+                    nodes : data.data,
+                    click : function(node) {
+                        console.log(node);
+                    }
+                });
+
+            }
+        });
+
+    });
+</script>

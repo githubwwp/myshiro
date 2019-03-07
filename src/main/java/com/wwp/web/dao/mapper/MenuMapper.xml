@@ -115,5 +115,15 @@
             )
         </foreach>
     </insert>
+    
+    <select id="getAllMenus" resultType="com.wwp.entity.vo.MenuVo" >
+    select 
+		<include refid="Base_Column_List" />
+    from menu
+	</select>
+	
+    <select id="getMenuTree" resultType="com.wwp.entity.vo.MenuTreeVo" >
+   	SELECT id, pid, title as name FROM `menu`
+	</select>
 	
 </mapper>

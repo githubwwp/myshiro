@@ -50,6 +50,10 @@ layui.use([ 'layer', 'form', 'element', 'table', 'jquery' ], function() {
 	        "icon": "layui-icon-fire",
 	        "list": [
 	        {
+	            "title": "菜单管理",
+	            "jump": "default/menu"
+	        },
+	        {
 	            "title": "页面1",
 	            "jump": "default/page1"
 	        },
