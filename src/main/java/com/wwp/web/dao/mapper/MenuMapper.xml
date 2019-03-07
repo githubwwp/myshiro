@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wwp.web.dao.impl.MenuMapper" >
+	<resultMap id="BaseResultMap" type="com.wwp.web.entity.Menu" >
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="pid" property="pid" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="jump" property="jump" jdbcType="VARCHAR" />
+		<result column="icon" property="icon" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >
+    id, pid, name, title, jump, icon
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+		<include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from menu
+    where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.wwp.web.entity.Menu" >
+    insert into menu (id, pid, name, 
+      title, jump, icon)
+    values (#{id,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{jump,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.wwp.web.entity.Menu" >
+    insert into menu
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+        id,
+			</if>
+			<if test="pid != null" >
+        pid,
+			</if>
+			<if test="name != null" >
+        name,
+			</if>
+			<if test="title != null" >
+        title,
+			</if>
+			<if test="jump != null" >
+        jump,
+			</if>
+			<if test="icon != null" >
+        icon,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="jump != null" >
+        #{jump,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.wwp.web.entity.Menu" >
+    update menu
+		<set >
+			<if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="jump != null" >
+        jump = #{jump,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+			</if>
+		</set>
+    where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.wwp.web.entity.Menu" >
+    update menu
+    set pid = #{pid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      jump = #{jump,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="deleteAllMenu" >
+    delete from menu
+	</delete>
+	
+	<insert id="batchInsertMenus" parameterType="java.util.List">
+        insert into menu (id, pid, name, title, jump, icon)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (	#{item.id,jdbcType=VARCHAR}, #{item.pid,jdbcType=INTEGER},#{item.name,jdbcType=LONGVARCHAR},
+            	#{item.title,jdbcType=LONGVARCHAR}, #{item.jump,jdbcType=LONGVARCHAR}, #{item.icon,jdbcType=LONGVARCHAR}
+            )
+        </foreach>
+    </insert>
+	
+</mapper>

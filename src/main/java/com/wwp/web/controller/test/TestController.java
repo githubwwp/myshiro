@@ -9,15 +9,22 @@ import java.util.UUID;
 
 import net.sf.json.spring.web.servlet.view.JsonView;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.wwp.entity.vo.GridVo;
+import com.wwp.web.entity.Menu;
+import com.wwp.web.service.impl.MenuService;
 
 @Controller
 @RequestMapping("test")
 public class TestController {
+	
+	@Autowired
+	private MenuService menuService;
 
 	@RequestMapping("test")
 	public ModelAndView test() {
@@ -46,5 +53,23 @@ public class TestController {
 		map.put("msg", "succ");
 
 		return new ModelAndView(new JsonView(), map);
+	}
+	
+	/**
+	 * 初始化全部菜单
+	 * 2019-3-7 by wwp
+	 * @param data
+	 * @return 
+	 * ModelAndView
+	 */
+	@RequestMapping("handleNavData")
+	public ModelAndView handleNavData(String data) {
+		Map<String, Object> rstMap = new HashMap<String, Object>();
+		List<Menu> menus = JSONObject.parseArray(data, Menu.class);
+
+		menuService.defaultMenus(menus);
+		
+		rstMap.put("menus", menus);
+		return new ModelAndView(new JsonView(), rstMap);
 	}
 }
