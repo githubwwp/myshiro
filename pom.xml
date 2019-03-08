@@ -219,7 +219,6 @@
 			<version>1.7.5</version>
 		</dependency>
 
-
 		<!-- mysql -->
 		<dependency>
 			<groupId>mysql</groupId>

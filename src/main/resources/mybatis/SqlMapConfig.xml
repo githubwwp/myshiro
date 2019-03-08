@@ -22,5 +22,10 @@
 	
 	<typeAliases>
 	</typeAliases>
+	
+	<plugins>
+		<plugin interceptor="com.wwp.mybatis.plugin.TestInterceptor">
+		</plugin>
+	</plugins>
 
 </configuration> 

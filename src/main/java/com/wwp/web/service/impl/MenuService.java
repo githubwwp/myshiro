@@ -48,5 +48,9 @@ public class MenuService {
 	public List<MenuTreeVo> getMenuTree(){
 	    return menuMapper.getMenuTree();
 	}
+	
+	public Menu selectByPrimaryKey(String id) {
+		return menuMapper.selectByPrimaryKey(id);
+	}
 
 }

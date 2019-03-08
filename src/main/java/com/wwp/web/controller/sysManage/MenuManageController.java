@@ -11,11 +11,13 @@ import net.sf.json.spring.web.servlet.view.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wwp.entity.vo.MenuTreeVo;
 import com.wwp.entity.vo.MenuVo;
 import com.wwp.web.WebConstant;
+import com.wwp.web.entity.Menu;
 import com.wwp.web.service.impl.MenuService;
 
 @Controller
@@ -131,6 +133,14 @@ public class MenuManageController {
                 this.dgMenu(menus, mv);
             }
         }
+    }
+    
+    @RequestMapping("selectByPrimaryKey")
+    public ModelAndView selectByPrimaryKey(String id){
+    	Menu menu = menuService.selectByPrimaryKey(id);
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("menu", menu);
+    	return new ModelAndView(new JsonView(), map);
     }
 
 }

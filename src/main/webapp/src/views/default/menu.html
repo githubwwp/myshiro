@@ -3,47 +3,102 @@
 
 <div class="layui-card layadmin-header">
 	<div class="layui-breadcrumb" lay-filter="breadcrumb">
-		<a lay-href="">主页</a> <a><cite>自定义</cite> </a> <a><cite>菜单管理</cite>
+		<a lay-href="">主页</a>
+		<a>
+			<cite>自定义</cite>
+		</a>
+		<a>
+			<cite>菜单管理</cite>
 		</a>
 	</div>
 </div>
 
-<style>
-/* 这段样式只是用于演示 */
-</style>
-
 <div class="layui-fluid">
 	<div class="layui-row layui-col-space15">
 		<div class="layui-col-md4">
-			<div id="menuTree"></div>
-
+			<div class="layui-card">
+				<!-- 菜单树 -->
+				<div id="menuTree"></div>
+			</div>
 		</div>
 
-		<div class="layui-col-md8">we</div>
+		<div class="layui-col-md8">
+			<div class="layui-card">
+				<div class="layui-card-header">菜单信息</div>
+				<div class="layui-card-body">
+					<form class="layui-form" lay-filter="component-form-menu-detail">
+						<div class="layui-form-item">
+							<label class="layui-form-label">编号：</label>
+							<div class="layui-input-block">
+								<input type="text" name="id" lay-verify="required" placeholder="请输入编号" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">父编号：</label>
+							<div class="layui-input-block">
+								<input type="text" name="pid" lay-verify="required" placeholder="请输入父编号" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">名称：</label>
+							<div class="layui-input-block">
+								<input type="text" name="name" lay-verify="required" placeholder="请输入名称" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">标题：</label>
+							<div class="layui-input-block">
+								<input type="text" name="title" lay-verify="required" placeholder="请输入标题" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">跳转地址：</label>
+							<div class="layui-input-block">
+								<input type="text" name="jump" lay-verify="required" placeholder="请输入跳转地址" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">图表：</label>
+							<div class="layui-input-block">
+								<input type="text" name="icon" lay-verify="required" placeholder="请输入图表" class="layui-input">
+							</div>
+						</div>
+						
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit lay-filter="component-form-element">立即提交</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
 <script>
-    layui.use([ 'jquery', 'tree' ], function() {
-        var $ = layui.$, tree = layui.tree;
+	layui.use([ 'jquery', 'tree', 'admin', 'form' ], function() {
+		var $ = layui.$, tree = layui.tree
+		,element = layui.element
+		  ,form = layui.form;
+		// 获取树数据
+		$.ajax({
+			url : '../../menu/getMenuTree',
+			method : 'post',
+			type : 'json',
+			success : function(data) {
+				layui.tree({
+					elem : '#menuTree' //传入元素选择器
+					,
+					nodes : data.data,
+					click : function(node) {
+						// 表单赋值
+						form.val("component-form-menu-detail", node);
+					}
+				});
+			}
+		});
 
-        // 获取树数据
-        $.ajax({
-            url : '../../menu/getMenuTree',
-            method : 'post',
-            type: 'json',
-            success : function(data) {
-                layui.tree({
-                    elem : '#menuTree' //传入元素选择器
-                    ,
-                    nodes : data.data,
-                    click : function(node) {
-                        console.log(node);
-                    }
-                });
-
-            }
-        });
-
-    });
+	});
 </script>
