@@ -37,7 +37,7 @@ public class SysManageController extends BaseController {
     @RequestMapping("queryPageUser")
     public ModelAndView queryPageUser(@RequestParam Map<String, Object> map) {
         Map<String, Object> model = new HashMap<String, Object>();
-        PageHelper.startPage(0, 1);
+        PageHelper.startPage(0, 10);
         List<SysUser> sysUsers = sysUserService.queryPageUser();
         PageInfo<SysUser> pageInfo = new PageInfo<SysUser>(sysUsers);
 

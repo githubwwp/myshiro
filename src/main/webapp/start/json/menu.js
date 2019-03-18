@@ -31,6 +31,10 @@
 	            "jump": "default/menu"
 	        },
 	        {
+	            "title": "菜单列表",
+	            "jump": "default/menuList"
+	        },
+	        {
 	            "title": "页面1",
 	            "jump": "default/page1"
 	        },

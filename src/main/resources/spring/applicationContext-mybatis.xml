@@ -25,7 +25,7 @@
 		<!-- 自动扫描mapping.xml文件 -->
 		<property name="mapperLocations" value="classpath:com/wwp/web/dao/mapper/*.xml"></property>
 		<!-- 配置分页插件 -->
-		<property name="plugins">
+		<!-- <property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageHelper">
 					<property name="properties">
@@ -36,7 +36,7 @@
 					</property>
 				</bean>
 			</array>
-		</property>
+		</property> -->
 	</bean>
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
